@@ -1,0 +1,34 @@
+{% spaceless %}
+{# GET THE IMAGE ASSET MODEL #}
+{% set image                 = image is defined ? image : null %}
+
+{# FIND ORIGINAL IMAGE DIMENSIONS #}
+{% set is2x                  = image.filename matches '/@2x\\.\\w+$/' %}
+{% set imageOriginalWidth    = is2x ? round(image.width / 2) : image.width %}
+{% set imageOriginalHeight   = is2x ? round(image.height / 2) : image.height %}
+
+
+{# SET VARIABLES FOR RESPONSIVE IMAGE SRCSET #}
+{% set mode                  = mode is defined ? mode : 'crop' %}
+{% set position              = position is defined ? position : 'center-center' %}
+
+{% set outputWidth           = (outputWidth is defined) and (outputWidth <= imageOriginalWidth) ? outputWidth : imageOriginalWidth %}
+{% set outputHeight          = (outputHeight is defined) and (outputHeight <= imageOriginalHeight) ? outputHeight : null %}
+
+
+
+
+{# Configure the image trnasform with the settings above for normal & retina platforms #}
+{% set thumb = {
+      mode: mode,
+      width: outputWidth,
+      height: outputHeight,
+      position: position
+  } %}
+
+
+{# Output the srcset= attribute value #}
+{{ image.getUrl(thumb) }}
+
+
+{% endspaceless %}

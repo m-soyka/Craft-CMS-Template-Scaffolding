@@ -1,0 +1,14 @@
+{% spaceless %}
+
+{# Variables #}
+{% set customClass    = customClass is defined ? customClass : null %}
+{% set xlinkId        = xlinkId is defined ? xlinkId : null %}
+
+
+{# HTML #}
+<svg class="{{xlinkId}}">
+  <use xlink:href="assets/images/svg-master-ref.svg#{{xlinkId}}"></use>
+</svg>
+
+
+{% endspaceless %}

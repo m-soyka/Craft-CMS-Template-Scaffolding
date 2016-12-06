@@ -1,0 +1,10 @@
+{% spaceless %}
+
+{# Variables #}
+{% set moduleClass    = 'starter-module' %}
+{% set content        = content is defined ? content : null %}
+
+{# HTML #}
+<div class="{{moduleClass}}">{{content}}</div>
+
+{% endspaceless %}

@@ -1,0 +1,69 @@
+{#
+ # Layout template
+ # ---------------
+ #
+ # This template defines your site’s global layout. It can be
+ # “extended” by other templates to fill in the gaps.
+ #
+ # See Twig’s Template Inheritance documentation for more details:
+ # http://twig.sensiolabs.org/doc/templates.html#template-inheritance
+ #}
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US" class="no-js">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+    <meta name="HandheldFriendly" content="true" />
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+
+    {#
+      NOTE: THIS IS CREATED WITH SEOMATIC PLUGIN
+      <title>{% if title is defined %}{{ title }} - {% endif %}{{ siteName }}</title>
+      <meta name="description" content="">
+      <meta name="keywords" content="">
+      <meta name="author" content="">
+      <meta name="robots" content="index, follow">
+      #}
+
+    <link rel="home" href="{{ siteUrl }}" />
+
+    {% hook 'seomaticRender' %}
+
+    <!-- build:css /assets/stylesheets/styles.css -->
+    <link rel="stylesheet" href="/_tmp/stylesheets/styles.css">
+    <!-- endbuild -->
+
+    {# NOTE: CREATE AND INSERT FAVICON LINKS AND META TAGS - Can use "http://realfavicongenerator.net/" #}
+    {# NOTE: INSERT EXTERNAL FONT LINKS #}
+
+    <script src="/bower_components/modernizr/modernizr.js"></script>
+
+    {# NOTE: INSERT GOOGLE ANALYTICS CODE #}
+  </head>
+
+  <body>
+
+    {# NOTE: SETUP BUILDINGBLOCK MACROS #}
+    {% import '_buildingblocks/_buildingblocks.forms' as forms %}
+    {% import '_buildingblocks/_buildingblocks.layout' as layout %}
+    {% import '_buildingblocks/_buildingblocks.media' as media %}
+    {% import '_buildingblocks/_buildingblocks.svg' as svg %}
+    {% import '_buildingblocks/_buildingblocks.text' as text %}
+    {% import '_buildingblocks/_buildingblocks.ux' as ux %}
+
+    <header>
+      {% include "_header" %}
+    </header>
+
+    <main>
+      {% block main %}{% endblock %}
+    </main>
+
+    <footer>
+      {% include "_footer" %}
+    </footer>
+
+    <script data-main="/_tmp/javascripts/main" src="/bower_components/requirejs/require.js"></script>
+  </body>
+</html>
